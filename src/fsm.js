@@ -24,13 +24,13 @@ class FSM {
      * @param state
      */
     changeState(state) {
-       if (this.states[state]) {
-            this.history.push(this.activeState);
-            this.activeState = state;            
+      if (this.states[state]) {
+        this.history.push(this.activeState);
+        this.activeState = state;            
         }
-        else {
-          throw new Error();
-          this.undoHistory = [];
+      else {
+        throw new Error();
+        this.undoHistory = [];
         }
     }
 
@@ -42,8 +42,8 @@ class FSM {
       if (this.states[this.activeState].transitions[event]) {
           this.changeState(this.states[this.activeState].transitions[event]);
         }
-        else { 
-          throw new Error();
+      else { 
+        throw new Error();
         }
     }
 
@@ -90,10 +90,10 @@ class FSM {
      */
     undo() {
       if (this.history.length > 0) {
-            let prevactiveState = this.history.pop();
-            this.undoHistory.push(this.activeState);
-            this.activeState = prevactiveState;
-            return true;
+        let prevactiveState = this.history.pop();
+        this.undoHistory.push(this.activeState);
+        this.activeState = prevactiveState;
+        return true;
         } 
       else{
         return false;
@@ -108,12 +108,12 @@ class FSM {
      */
     redo() {
       if (this.undoHistory.length > 0) {
-            let prevUndoState = this.undoHistory.pop();
-            this.history.push(this.activeState);
-            this.activeState = prevUndoState;
-            return true;
-        }else {
-            return false;
+        let prevUndoState = this.undoHistory.pop();
+        this.history.push(this.activeState);
+        this.activeState = prevUndoState;
+        return true;
+      }else {
+        return false;
 
       }
         
