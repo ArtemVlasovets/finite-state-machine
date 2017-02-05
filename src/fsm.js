@@ -26,11 +26,12 @@ class FSM {
     changeState(state) {
       if (this.states[state]) {
         this.history.push(this.activeState);
-        this.activeState = state;            
+        this.activeState = state; 
+        this.undoHistory = [];
         }
       else {
         throw new Error();
-        this.undoHistory = [];
+        
         }
     }
 
